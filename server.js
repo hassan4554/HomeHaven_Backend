@@ -6,9 +6,15 @@ import routes from "./routes/index.js";
 import { globalErrorHandler } from "./middlewares/globalErrorHandler.js";
 import { AppError } from "./utils/appError.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.use(
+  cors({
+    origin: "https://home-haven-frontend-ruby.vercel.app/",
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 app.use("/api", routes);
