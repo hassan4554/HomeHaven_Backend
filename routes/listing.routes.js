@@ -26,6 +26,6 @@ router.patch(
   verifyToken,
   updateListing
 );
-router.get("/search", verifyToken, searchListings);
+router.get("/search", searchListings);
 
 export default router;
