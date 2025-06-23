@@ -38,3 +38,5 @@ process.on("unhandledRejection", (err) => {
 });
 
 app.use(globalErrorHandler);
+
+export default app;
