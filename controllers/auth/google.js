@@ -21,13 +21,17 @@ const google = catchAsync(async (req, res, next) => {
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
   const { password: pass, ...rest } = user._doc;
 
-  return successResponse.sendCookieAndData(res, {
+  const data = {
+    data:rest,
+    tokens: {
+      accessToken: token
+    }
+  }
+
+  return successResponse.sendData(res, {
     status: 200,
     message: "User found successfully",
-    data: rest,
-    cookieName: "access-token",
-    token,
-    options: { httpOnly: true },
+    data
   });
 
   //   const user = await findUser({ email: req.body.email });

@@ -15,14 +15,17 @@ const signin = catchAsync(async (req, res, next) => {
 
   const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
   const { password: pass, ...rest } = user._doc;
+  const data = {
+    data: rest,
+    tokens: {
+      accessToken: token
+    }
+  }
 
-  return successResponse.sendCookieAndData(res, {
+  return successResponse.sendData(res, {
     status: 200,
     message: "User found successfully",
-    data: rest,
-    cookieName: "access-token",
-    token,
-    options: { httpOnly: true },
+    data,
   });
 });
 
