@@ -19,7 +19,7 @@ router.post(
 );
 
 router.delete("/delete/:id", verifyToken, deleteListing);
-router.get("/get/:id", verifyToken, getListing);
+router.get("/get/:id", getListing);
 router.patch(
   "/update/:id",
   validateData(editListing),
